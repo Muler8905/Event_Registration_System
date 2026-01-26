@@ -140,12 +140,65 @@ const DynamicFooter = ({
     { label: 'Performance', href: '/admin/performance', icon: Cpu }
   ]
 
+  // Icon mapping for safe icon resolution
+  const iconMap = {
+    Calendar,
+    Users,
+    UserPlus,
+    UserMinus,
+    Edit,
+    Trash2,
+    CheckCircle,
+    XCircle,
+    Clock,
+    Filter,
+    RefreshCw,
+    Download,
+    Upload,
+    Eye,
+    UserCheck,
+    Bell,
+    Search,
+    MoreHorizontal,
+    ChevronUp,
+    ChevronDown,
+    Settings,
+    Home,
+    FileText,
+    BarChart3,
+    Activity,
+    Shield,
+    Zap,
+    HelpCircle,
+    ExternalLink,
+    Mail,
+    Phone,
+    MapPin,
+    Github,
+    Twitter,
+    Linkedin,
+    MessageCircle,
+    Heart,
+    TrendingUp,
+    Database,
+    Server,
+    Wifi,
+    WifiOff,
+    AlertCircle,
+    Cpu,
+    HardDrive,
+    Monitor
+  }
+
   const contextualActions = () => {
     if (footerData?.contextualNavigation?.length > 0) {
       return footerData.contextualNavigation.map(item => ({
         label: item.label,
-        action: item.action ? () => eval(item.action) : () => navigate(item.href),
-        icon: eval(item.icon) // Convert string to icon component
+        action: item.action ? () => {
+          // Safe action execution without eval
+          if (item.href) navigate(item.href)
+        } : () => navigate(item.href),
+        icon: iconMap[item.icon] || Calendar // Safe icon resolution
       }))
     }
 
