@@ -2,10 +2,13 @@ import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { Plus, Edit, Trash2, Calendar, Users, TrendingUp, Eye, BarChart3, X } from 'lucide-react'
+import { Plus, Edit, Trash2, Calendar, Users, TrendingUp, Eye, BarChart3, X, UserCheck, Settings as SettingsIcon, FileText } from 'lucide-react'
 import { eventService } from '../services/api'
 import StatsCard from '../components/StatsCard'
 import LoadingSpinner from '../components/LoadingSpinner'
+import UserManagement from './UserManagement'
+import RegistrationManagement from './RegistrationManagement'
+import SystemSettings from './SystemSettings'
 import toast from 'react-hot-toast'
 
 const eventSchema = z.object({
@@ -144,7 +147,9 @@ const AdminDashboard = () => {
   const tabs = [
     { id: 'overview', name: 'Overview', icon: BarChart3 },
     { id: 'events', name: 'Events', icon: Calendar },
-    { id: 'analytics', name: 'Analytics', icon: TrendingUp }
+    { id: 'users', name: 'Users', icon: UserCheck },
+    { id: 'registrations', name: 'Registrations', icon: FileText },
+    { id: 'settings', name: 'Settings', icon: SettingsIcon }
   ]
 
   if (loading) {
@@ -166,27 +171,29 @@ const AdminDashboard = () => {
           <h1 className="text-3xl font-display font-bold text-gray-900">Admin Dashboard</h1>
           <p className="text-gray-600 mt-1">Manage your events and monitor performance</p>
         </div>
-        <button
-          onClick={() => {
-            setShowForm(true)
-            setEditingEvent(null)
-            reset()
-          }}
-          className="btn btn-primary flex items-center space-x-2 shadow-lg"
-        >
-          <Plus className="h-5 w-5" />
-          <span>Create Event</span>
-        </button>
+        {activeTab === 'events' && (
+          <button
+            onClick={() => {
+              setShowForm(true)
+              setEditingEvent(null)
+              reset()
+            }}
+            className="btn btn-primary flex items-center space-x-2 shadow-lg"
+          >
+            <Plus className="h-5 w-5" />
+            <span>Create Event</span>
+          </button>
+        )}
       </div>
 
       {/* Tabs */}
       <div className="border-b border-gray-200">
-        <nav className="-mb-px flex space-x-8">
+        <nav className="-mb-px flex space-x-8 overflow-x-auto">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center space-x-2 py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
+              className={`flex items-center space-x-2 py-4 px-1 border-b-2 font-medium text-sm transition-colors whitespace-nowrap ${
                 activeTab === tab.id
                   ? 'border-primary-500 text-primary-600'
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
@@ -199,7 +206,7 @@ const AdminDashboard = () => {
         </nav>
       </div>
 
-      {/* Overview Tab */}
+      {/* Tab Content */}
       {activeTab === 'overview' && (
         <div className="space-y-8 animate-slide-up">
           {/* Stats Cards */}
@@ -416,18 +423,14 @@ const AdminDashboard = () => {
         </div>
       )}
 
-      {/* Analytics Tab */}
-      {activeTab === 'analytics' && (
-        <div className="space-y-6 animate-slide-up">
-          <div className="card text-center py-12">
-            <BarChart3 className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">Analytics Coming Soon</h3>
-            <p className="text-gray-600">
-              Detailed analytics and reporting features will be available in the next update.
-            </p>
-          </div>
-        </div>
-      )}
+      {/* Users Tab */}
+      {activeTab === 'users' && <UserManagement />}
+
+      {/* Registrations Tab */}
+      {activeTab === 'registrations' && <RegistrationManagement />}
+
+      {/* Settings Tab */}
+      {activeTab === 'settings' && <SystemSettings />}
 
       {/* Event Form Modal */}
       {showForm && (
