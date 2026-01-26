@@ -411,19 +411,19 @@ const DynamicFooter = ({
     <footer className="bg-white border-t border-gray-100 mt-16">
       {/* Contextual Actions Bar */}
       {contextualActions().length > 0 && (
-        <div className="bg-gradient-to-r from-primary-50 to-secondary-50 border-b border-gray-100">
-          <div className="container-max py-3">
+        <div className="bg-gradient-to-r from-primary-50 via-secondary-50 to-primary-50 border-b border-gray-100 shadow-soft">
+          <div className="container-max py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2 text-sm text-gray-600">
-                <Zap className="h-4 w-4" />
-                <span>Quick Actions:</span>
+                <Zap className="h-4 w-4 text-primary-600" />
+                <span className="font-medium">Quick Actions:</span>
               </div>
               <div className="flex items-center space-x-3">
                 {contextualActions().map((action, index) => (
                   <button
                     key={index}
                     onClick={action.action}
-                    className="flex items-center space-x-2 px-3 py-1.5 bg-white rounded-lg text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition-all duration-200 shadow-sm hover:shadow-md"
+                    className="flex items-center space-x-2 px-4 py-2 bg-white rounded-xl text-sm font-semibold text-gray-700 hover:text-primary-600 hover:bg-gradient-to-r hover:from-primary-50 hover:to-secondary-50 transition-all duration-300 shadow-soft hover:shadow-medium transform hover:scale-105"
                   >
                     <action.icon className="h-4 w-4" />
                     <span>{action.label}</span>

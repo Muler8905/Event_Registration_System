@@ -35,28 +35,31 @@ const Layout = ({ children }) => {
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* System Announcements Bar */}
       {hasAnnouncements && footerData.announcements?.length > 0 && (
-        <div className="bg-gradient-to-r from-primary-600 to-secondary-600 text-white py-2 px-4">
+        <div className="bg-gradient-to-r from-primary-600 via-primary-700 to-secondary-600 text-white py-3 px-4 shadow-lg">
           <div className="container-max">
-            <div className="flex items-center justify-center space-x-2 text-sm">
-              <AlertCircle className="h-4 w-4" />
+            <div className="flex items-center justify-center space-x-3 text-sm font-medium">
+              <AlertCircle className="h-4 w-4 animate-pulse" />
               <span>{footerData.announcements[0].message}</span>
+              <button className="ml-4 text-white hover:text-gray-200 transition-colors">
+                <X className="h-4 w-4" />
+              </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* Navigation */}
-      <nav className="bg-white shadow-soft border-b border-gray-100 sticky top-0 z-50">
+      {/* Enhanced Navigation */}
+      <nav className="bg-white shadow-large border-b border-gray-100 sticky top-0 z-50 backdrop-blur-md bg-opacity-95">
         <div className="container-max">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo */}
+          <div className="flex justify-between items-center h-18">
+            {/* Enhanced Logo */}
             <Link to="/" className="flex items-center space-x-3 group">
-              <div className="p-2 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-xl group-hover:scale-110 transition-transform duration-300">
-                <Calendar className="h-6 w-6 text-white" />
+              <div className="p-3 bg-gradient-to-br from-primary-600 via-primary-700 to-secondary-600 rounded-2xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-glow">
+                <Calendar className="h-7 w-7 text-white" />
               </div>
               <div>
-                <span className="text-xl font-display font-bold text-gradient">EventHub</span>
-                <div className="text-xs text-gray-500 -mt-1">Professional Events</div>
+                <span className="text-2xl font-display font-bold text-gradient">EventHub</span>
+                <div className="text-xs text-gray-500 -mt-1 font-medium">Professional Edition</div>
               </div>
             </Link>
             

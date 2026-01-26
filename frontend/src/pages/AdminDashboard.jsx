@@ -268,9 +268,9 @@ const AdminDashboard = () => {
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <h1 className="text-3xl font-display font-bold text-gray-900">Admin Dashboard</h1>
+            <h1 className="text-4xl font-display font-bold text-gradient mb-2">Admin Dashboard</h1>
             <div className="flex items-center space-x-4 mt-1">
-              <p className="text-gray-600">Manage your events and monitor performance</p>
+              <p className="text-gray-600 text-lg">Manage your events and monitor performance</p>
               <div className="flex items-center space-x-2 text-sm text-gray-500">
                 <Clock className="h-4 w-4" />
                 <span>Last updated: {lastUpdated.toLocaleTimeString()}</span>
@@ -278,18 +278,18 @@ const AdminDashboard = () => {
                   connectionStatus === 'connected' ? 'text-success-600' : 
                   connectionStatus === 'error' ? 'text-danger-600' : 'text-warning-600'
                 }`}>
-                  <div className={`w-2 h-2 rounded-full ${
-                    connectionStatus === 'connected' ? 'bg-success-500 animate-pulse' : 
-                    connectionStatus === 'error' ? 'bg-danger-500' : 'bg-warning-500'
+                  <div className={`w-3 h-3 rounded-full ${
+                    connectionStatus === 'connected' ? 'status-online' : 
+                    connectionStatus === 'error' ? 'status-error' : 'status-warning'
                   }`}></div>
-                  <span className="text-xs">
+                  <span className="text-xs font-medium">
                     {connectionStatus === 'connected' ? 'Live' : 
                      connectionStatus === 'error' ? 'Offline' : 'Connecting...'}
                   </span>
                 </div>
                 <button
                   onClick={refreshStats}
-                  className="text-primary-600 hover:text-primary-700 ml-2"
+                  className="text-primary-600 hover:text-primary-700 ml-2 p-1 rounded-lg hover:bg-primary-50 transition-all duration-200"
                   title="Refresh data"
                 >
                   <RefreshCw className={`h-4 w-4 ${statsLoading ? 'animate-spin' : ''}`} />
@@ -302,7 +302,7 @@ const AdminDashboard = () => {
             {activeTab === 'events' && (
               <button
                 onClick={() => handleQuickAction('create-event')}
-                className="btn btn-primary flex items-center space-x-2 shadow-lg"
+                className="btn btn-primary flex items-center space-x-2 shadow-glow"
               >
                 <Plus className="h-5 w-5" />
                 <span>Create Event</span>
@@ -319,24 +319,30 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        {/* Tabs */}
-        <div className="border-b border-gray-200 bg-white rounded-t-xl">
+        {/* Enhanced Tabs */}
+        <div className="border-b border-gray-200 bg-white rounded-t-2xl shadow-soft">
           <nav className="-mb-px flex space-x-8 overflow-x-auto px-6">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => handleTabChange(tab.id)}
-                className={`flex items-center space-x-2 py-4 px-1 border-b-2 font-medium text-sm transition-colors whitespace-nowrap ${
+                className={`flex items-center space-x-2 py-4 px-1 border-b-3 font-semibold text-sm transition-all duration-300 whitespace-nowrap relative group ${
                   activeTab === tab.id
-                    ? 'border-primary-500 text-primary-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                    ? 'border-primary-500 text-primary-700 bg-gradient-to-t from-primary-50 to-transparent'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 hover:bg-gradient-to-t hover:from-gray-50 hover:to-transparent'
                 }`}
               >
-                <tab.icon className="h-5 w-5" />
+                <tab.icon className={`h-5 w-5 transition-all duration-300 ${
+                  activeTab === tab.id ? 'text-primary-600' : 'text-gray-400 group-hover:text-gray-600'
+                }`} />
                 <span>{tab.name}</span>
                 {tab.id === 'overview' && !statsLoading && (
-                  <div className="w-2 h-2 bg-success-500 rounded-full animate-pulse"></div>
+                  <div className="status-online"></div>
                 )}
+                {/* Tab indicator */}
+                <div className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 transform transition-all duration-300 ${
+                  activeTab === tab.id ? 'scale-x-100' : 'scale-x-0'
+                }`}></div>
               </button>
             ))}
           </nav>
