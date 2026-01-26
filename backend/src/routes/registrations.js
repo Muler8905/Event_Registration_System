@@ -1,6 +1,7 @@
 const express = require('express');
 const { PrismaClient } = require('@prisma/client');
 const { authenticateToken } = require('../middlewares/auth');
+const emailService = require('../services/emailService');
 
 const router = express.Router();
 const prisma = new PrismaClient();
@@ -70,6 +71,9 @@ router.post('/', authenticateToken, async (req, res, next) => {
       }
     });
 
+    // Send confirmation email (don't wait for it)
+    emailService.sendRegistrationConfirmation(req.user, event).catch(console.error);
+
     res.status(201).json({
       message: 'Registration successful',
       registration
@@ -112,7 +116,12 @@ router.delete('/:id', authenticateToken, async (req, res, next) => {
       where: { id: req.params.id },
       include: {
         event: {
-          select: { date: true }
+          select: { 
+            id: true,
+            title: true,
+            date: true,
+            location: true
+          }
         }
       }
     });
@@ -134,6 +143,9 @@ router.delete('/:id', authenticateToken, async (req, res, next) => {
     await prisma.registration.delete({
       where: { id: req.params.id }
     });
+
+    // Send cancellation confirmation email (don't wait for it)
+    emailService.sendCancellationConfirmation(req.user, registration.event).catch(console.error);
 
     res.json({ message: 'Registration cancelled successfully' });
   } catch (error) {

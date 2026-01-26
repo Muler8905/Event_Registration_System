@@ -81,7 +81,7 @@ A full-stack web application for event management and registration built with Re
    JWT_SECRET=your-super-secret-jwt-key-here
    JWT_EXPIRES_IN=7d
    
-   # Email Configuration
+   # Email Configuration (Optional - for email notifications)
    EMAIL_HOST=smtp.gmail.com
    EMAIL_PORT=587
    EMAIL_USER=your-email@gmail.com
@@ -98,6 +98,9 @@ A full-stack web application for event management and registration built with Re
    
    # Push database schema
    npm run db:push
+   
+   # Seed database with sample data (includes admin user and demo events)
+   npm run db:seed
    ```
 
 5. **Start Development Servers**
@@ -109,6 +112,27 @@ A full-stack web application for event management and registration built with Re
    This will start:
    - Backend server on http://localhost:5000
    - Frontend server on http://localhost:5173
+
+### Default Accounts (After Seeding)
+
+- **Admin Account**: admin@eventhub.com / admin123
+- **Demo User**: demo@example.com / demo123
+
+### Database Commands
+
+```bash
+# Reset database and reseed with fresh data
+npm run db:reset
+
+# Only seed data (without reset)
+npm run db:seed
+
+# Generate Prisma client after schema changes
+npm run db:generate
+
+# Push schema changes to database
+npm run db:push
+```
 
 ## Project Structure
 
@@ -159,11 +183,12 @@ event-registration-system/
 
 ## Default Admin Account
 
-To create an admin account, register a normal user and then manually update the role in the database:
+After running the database seeder (`npm run db:seed`), you can log in with:
 
-```sql
-UPDATE users SET role = 'ADMIN' WHERE email = 'admin@example.com';
-```
+**Admin Account**: admin@eventhub.com / admin123
+**Demo User**: demo@example.com / demo123
+
+The seeder creates 10 sample events with realistic data and images to make the system look professional and attractive.
 
 ## Development Commands
 
