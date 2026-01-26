@@ -900,7 +900,12 @@ const AdminDashboard = () => {
       </div>
 
       {/* Dynamic Footer */}
-      <DynamicFooter currentTab={activeTab} onTabChange={handleTabChange} />
+      <DynamicFooter 
+        currentTab={activeTab} 
+        onTabChange={handleTabChange}
+        systemStats={realTimeStats}
+        connectionStatus={connectionStatus}
+      />
     </div>
   )
 }

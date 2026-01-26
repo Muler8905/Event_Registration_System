@@ -1,13 +1,22 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import { Calendar, User, LogOut, Settings, Bell, Menu, X } from 'lucide-react'
+import { Calendar, User, LogOut, Settings, Bell, Menu, X, AlertCircle } from 'lucide-react'
 import { useState } from 'react'
 import DynamicFooter from '../components/DynamicFooter'
+import { useFooterData } from '../hooks/useFooterData'
 
 const Layout = ({ children }) => {
   const { user, isAuthenticated, logout } = useAuth()
   const location = useLocation()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  
+  // Use footer data hook
+  const { 
+    footerData, 
+    loading: footerLoading, 
+    hasAnnouncements,
+    subscribeToNewsletter 
+  } = useFooterData()
 
   const isActive = (path) => location.pathname === path
   const isAdminPage = location.pathname.startsWith('/admin')
@@ -24,6 +33,18 @@ const Layout = ({ children }) => {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
+      {/* System Announcements Bar */}
+      {hasAnnouncements && footerData.announcements?.length > 0 && (
+        <div className="bg-gradient-to-r from-primary-600 to-secondary-600 text-white py-2 px-4">
+          <div className="container-max">
+            <div className="flex items-center justify-center space-x-2 text-sm">
+              <AlertCircle className="h-4 w-4" />
+              <span>{footerData.announcements[0].message}</span>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Navigation */}
       <nav className="bg-white shadow-soft border-b border-gray-100 sticky top-0 z-50">
         <div className="container-max">
@@ -65,7 +86,7 @@ const Layout = ({ children }) => {
                   <button className="relative p-2 text-gray-400 hover:text-gray-600 transition-colors">
                     <Bell className="h-5 w-5" />
                     <span className="absolute -top-1 -right-1 h-4 w-4 bg-danger-500 text-white text-xs rounded-full flex items-center justify-center">
-                      3
+                      {footerData.stats?.todayRegistrations > 0 ? '!' : ''}
                     </span>
                   </button>
 
@@ -240,8 +261,12 @@ const Layout = ({ children }) => {
         </div>
       </main>
 
-      {/* Dynamic Footer */}
-      <DynamicFooter />
+      {/* Enhanced Dynamic Footer */}
+      <DynamicFooter 
+        footerData={footerData}
+        loading={footerLoading}
+        onNewsletterSubscribe={subscribeToNewsletter}
+      />
     </div>
   )
 }

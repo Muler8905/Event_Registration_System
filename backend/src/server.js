@@ -13,6 +13,7 @@ const eventRoutes = require('./routes/events');
 const registrationRoutes = require('./routes/registrations');
 const statsRoutes = require('./routes/stats');
 const analyticsRoutes = require('./routes/analytics');
+const footerRoutes = require('./routes/footer');
 const errorHandler = require('./middlewares/errorHandler');
 const websocketService = require('./services/websocketService');
 
@@ -70,6 +71,7 @@ app.use('/api/events', eventRoutes);
 app.use('/api/registrations', registrationRoutes);
 app.use('/api/stats', statsRoutes);
 app.use('/api/analytics', analyticsRoutes);
+app.use('/api/footer', footerRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
