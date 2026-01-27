@@ -1,7 +1,16 @@
 # EventHub - Professional Event Registration System
 
 A comprehensive, full-stack event registration system built with React, Node.js, and modern web technologies. Features real-time analytics, professional UI/UX, and enterprise-grade functionality.
-
+# About us 
+#COURSE : IP. FINAL PROJECT.
+# GROUP 10 MEMBERS:
+##Student name……………………………………………………ID 
+# 1.MULUKENUGAMO.............……….1501491
+# 2.NEBIYUTSEGAYE….............. 1501532
+# 3.MAHLETFEKDEWLD………….......... 1501381
+# 4.YISHAKTULE…………………........... 1501786
+# 5.SUBERSULUB……………..........…………1502321
+# 6.HABTAMUINKA…………………...........1500198
 ## 🚀 Key Features
 
 ### Core Functionality
@@ -272,7 +281,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support & Documentation
 
-- **Email Support**: support@eventhub.com
+- **Email Support**: mulukenugamo8@gmail.com
 - **Documentation**: Comprehensive inline documentation and comments
 - **Issue Tracking**: GitHub Issues for bug reports and feature requests
 - **Community**: Join our community for discussions and support
