@@ -1,7 +1,7 @@
 # EventHub - Professional Event Registration System
 
 A comprehensive, full-stack event registration system built with React, Node.js, and modern web technologies. Features real-time analytics, professional UI/UX, and enterprise-grade functionality.
-# About us 
+# About us  
  COURSE : IP. FINAL PROJECT.
   GROUP 10 MEMBERS:
 ##Student name……………………………………………………ID 
