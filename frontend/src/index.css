@@ -155,7 +155,7 @@
   /* Professional Card Variants */
   .card-primary {
     @apply bg-gradient-to-br from-primary-50 via-white to-primary-100 border-primary-200;
-    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.1);
+    box-shadow: 0 4px 20px rgba(99, 135, 212, 0.1);
   }
 
   .card-secondary {
@@ -165,7 +165,7 @@
 
   .card-success {
     @apply bg-gradient-to-br from-success-50 via-white to-success-100 border-success-200;
-    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.1);
+    box-shadow: 0 4px 20px rgba(31, 146, 108, 0.1);
   }
 
   .card-warning {
