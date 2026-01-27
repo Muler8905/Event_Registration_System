@@ -43,7 +43,12 @@ import {
   Filter,
   MoreHorizontal,
   ChevronUp,
-  ChevronDown
+  ChevronDown,
+  UserPlus,
+  UserMinus,
+  Edit,
+  Trash2,
+  XCircle
 } from 'lucide-react'
 
 const DynamicFooter = ({ 
@@ -288,7 +293,7 @@ const DynamicFooter = ({
                 {/* System Load */}
                 <div className="flex items-center space-x-2 text-sm text-gray-600">
                   <Cpu className="h-4 w-4" />
-                  <span>Load: {footerStats.systemLoad}%</span>
+                  <span>Load: {stats.systemLoad || 0}%</span>
                 </div>
 
                 {/* Current Time */}
@@ -567,15 +572,15 @@ const DynamicFooter = ({
               <div className="space-y-2 text-sm text-gray-600">
                 <div className="flex items-center space-x-2">
                   <Mail className="h-3 w-3" />
-                  <a href="mailto:hello@eventhub.com" className="hover:text-primary-600">hello@eventhub.com</a>
+                  <a href="mailto:mulukenugamo8@gmail.com" className="hover:text-primary-600 transition-colors">mulukenugamo8@gmail.com</a>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Phone className="h-3 w-3" />
-                  <a href="tel:+1234567890" className="hover:text-primary-600">+1 (234) 567-890</a>
+                  <a href="tel:+251900632624" className="hover:text-primary-600 transition-colors">+251 900632624</a>
                 </div>
                 <div className="flex items-center space-x-2">
                   <MapPin className="h-3 w-3" />
-                  <span>San Francisco, CA</span>
+                  <span>Addis Ababa, Ethiopia</span>
                 </div>
               </div>
             </div>

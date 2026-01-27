@@ -56,59 +56,67 @@ const ActivityFeed = ({ activities = [], title = "Recent Activity" }) => {
   }
 
   return (
-    <div className="card">
+    <div className="card-secondary">
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
-        <div className="flex items-center space-x-2">
+        <h3 className="text-lg font-bold text-gray-900 flex items-center space-x-2">
+          <Calendar className="h-5 w-5 text-secondary-600" />
+          <span>{title}</span>
+        </h3>
+        <div className="flex items-center space-x-2 bg-success-50 px-3 py-1 rounded-full">
           <div className="w-2 h-2 bg-success-500 rounded-full animate-pulse"></div>
-          <span className="text-sm text-gray-500">Live</span>
+          <span className="text-sm text-success-700 font-semibold">Live</span>
         </div>
       </div>
       
-      <div className="space-y-4 max-h-96 overflow-y-auto">
+      <div className="space-y-3 max-h-96 overflow-y-auto custom-scrollbar">
         {activities.length === 0 ? (
-          <div className="text-center py-8">
-            <Calendar className="h-12 w-12 text-gray-300 mx-auto mb-3" />
-            <p className="text-gray-500">No recent activity</p>
+          <div className="text-center py-12">
+            <div className="w-16 h-16 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Calendar className="h-8 w-8 text-gray-400" />
+            </div>
+            <p className="text-gray-500 font-medium">No recent activity</p>
+            <p className="text-gray-400 text-sm mt-1">Activity will appear here as it happens</p>
           </div>
         ) : (
           activities.map((activity, index) => (
             <div
               key={index}
-              className={`flex items-start space-x-3 p-3 rounded-lg border transition-all duration-200 hover:shadow-sm ${getActivityColor(activity.type)}`}
+              className={`flex items-start space-x-4 p-4 rounded-xl border-l-4 transition-all duration-300 hover:shadow-medium hover:transform hover:scale-102 ${getActivityColor(activity.type)} backdrop-blur-sm`}
             >
-              <div className="flex-shrink-0 mt-0.5">
+              <div className="flex-shrink-0 mt-1 p-2 bg-white rounded-lg shadow-sm">
                 {getActivityIcon(activity.type)}
               </div>
               
               <div className="flex-1 min-w-0">
-                <p className="text-sm text-gray-900 font-medium">
+                <p className="text-sm text-gray-900 font-semibold leading-relaxed">
                   {activity.message}
                 </p>
-                <p className="text-xs text-gray-500 mt-1">
-                  {formatTime(activity.time)}
-                </p>
-              </div>
-              
-              {activity.badge && (
-                <div className={`px-2 py-1 rounded-full text-xs font-medium ${
-                  activity.badge.type === 'success' 
-                    ? 'bg-success-100 text-success-800'
-                    : activity.badge.type === 'warning'
-                    ? 'bg-warning-100 text-warning-800'
-                    : 'bg-primary-100 text-primary-800'
-                }`}>
-                  {activity.badge.text}
+                <div className="flex items-center justify-between mt-2">
+                  <p className="text-xs text-gray-500 font-medium">
+                    {formatTime(activity.time)}
+                  </p>
+                  
+                  {activity.badge && (
+                    <div className={`px-3 py-1 rounded-full text-xs font-bold shadow-sm ${
+                      activity.badge.type === 'success' 
+                        ? 'bg-success-100 text-success-800 border border-success-200'
+                        : activity.badge.type === 'warning'
+                        ? 'bg-warning-100 text-warning-800 border border-warning-200'
+                        : 'bg-primary-100 text-primary-800 border border-primary-200'
+                    }`}>
+                      {activity.badge.text}
+                    </div>
+                  )}
                 </div>
-              )}
+              </div>
             </div>
           ))
         )}
       </div>
       
       {activities.length > 0 && (
-        <div className="mt-4 pt-4 border-t border-gray-200">
-          <button className="text-sm text-primary-600 hover:text-primary-700 font-medium">
+        <div className="mt-6 pt-4 border-t border-gray-200">
+          <button className="w-full text-sm text-primary-600 hover:text-primary-700 font-semibold hover:bg-primary-50 py-2 px-4 rounded-lg transition-all duration-200">
             View all activity →
           </button>
         </div>

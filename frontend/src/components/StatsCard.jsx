@@ -50,34 +50,39 @@ const StatsCard = ({
 
   const colorClasses = {
     primary: {
-      bg: 'from-primary-500 to-primary-600',
+      bg: 'from-primary-600 to-primary-700',
       icon: 'text-primary-600',
-      accent: 'bg-primary-100',
-      border: 'border-primary-200'
+      accent: 'bg-primary-50',
+      border: 'border-primary-300',
+      card: 'card-primary'
     },
     success: {
-      bg: 'from-success-500 to-success-600',
+      bg: 'from-success-600 to-emerald-600',
       icon: 'text-success-600',
-      accent: 'bg-success-100',
-      border: 'border-success-200'
+      accent: 'bg-success-50',
+      border: 'border-success-300',
+      card: 'card-success'
     },
     warning: {
-      bg: 'from-warning-500 to-warning-600',
+      bg: 'from-warning-600 to-amber-600',
       icon: 'text-warning-600',
-      accent: 'bg-warning-100',
-      border: 'border-warning-200'
+      accent: 'bg-warning-50',
+      border: 'border-warning-300',
+      card: 'card-warning'
     },
     secondary: {
-      bg: 'from-secondary-500 to-secondary-600',
+      bg: 'from-secondary-600 to-purple-600',
       icon: 'text-secondary-600',
-      accent: 'bg-secondary-100',
-      border: 'border-secondary-200'
+      accent: 'bg-secondary-50',
+      border: 'border-secondary-300',
+      card: 'card-secondary'
     },
     danger: {
-      bg: 'from-danger-500 to-danger-600',
+      bg: 'from-danger-600 to-rose-600',
       icon: 'text-danger-600',
-      accent: 'bg-danger-100',
-      border: 'border-danger-200'
+      accent: 'bg-danger-50',
+      border: 'border-danger-300',
+      card: 'card-danger'
     }
   }
 
@@ -128,16 +133,16 @@ const StatsCard = ({
   }
 
   return (
-    <div className={`card hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden ${colors.border} border-l-4 animate-fade-in`}>
+    <div className={`${colors.card} hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden border-l-4 ${colors.border} animate-fade-in`}>
       {/* Background Pattern */}
-      <div className="absolute top-0 right-0 w-32 h-32 opacity-5">
-        <div className="w-full h-full bg-gradient-to-br from-current to-transparent rounded-full transform translate-x-8 -translate-y-8"></div>
+      <div className="absolute top-0 right-0 w-32 h-32 opacity-10">
+        <div className={`w-full h-full bg-gradient-to-br ${colors.bg} rounded-full transform translate-x-8 -translate-y-8 opacity-20`}></div>
       </div>
 
       {/* Real-time indicator */}
       {isRealTime && (
-        <div className="absolute top-3 right-3 flex items-center space-x-1">
-          <Zap className="h-3 w-3 text-success-500" />
+        <div className="absolute top-4 right-4 flex items-center space-x-1">
+          <Zap className="h-3 w-3 text-success-500 animate-pulse" />
           <div className="w-2 h-2 bg-success-500 rounded-full animate-pulse"></div>
         </div>
       )}
@@ -145,12 +150,12 @@ const StatsCard = ({
       <div className="relative z-10">
         <div className="flex items-center justify-between">
           <div className="flex-1">
-            <p className="text-sm font-medium text-gray-600 mb-1">{title}</p>
+            <p className="text-sm font-semibold text-gray-700 mb-1">{title}</p>
             {subtitle && (
-              <p className="text-xs text-gray-500 mb-2">{subtitle}</p>
+              <p className="text-xs text-gray-500 mb-3">{subtitle}</p>
             )}
             
-            <div className="flex items-baseline space-x-2 mb-2">
+            <div className="flex items-baseline space-x-2 mb-3">
               <span className={`text-3xl font-bold text-gray-900 ${isAnimating ? 'animate-pulse' : ''}`}>
                 {loading ? (
                   <div className="w-20 h-8 bg-gray-200 rounded animate-pulse"></div>
@@ -169,7 +174,7 @@ const StatsCard = ({
                 ) : (
                   <Minus className="h-4 w-4 text-gray-500 mr-1" />
                 )}
-                <span className={`text-sm font-medium ${
+                <span className={`text-sm font-semibold ${
                   changeType === 'increase' ? 'text-success-600' : 
                   changeType === 'decrease' ? 'text-danger-600' : 'text-gray-600'
                 }`}>
@@ -183,15 +188,15 @@ const StatsCard = ({
             {typeof value === 'number' && value <= 100 && title.toLowerCase().includes('rate') && (
               <div className="w-full bg-gray-200 rounded-full h-2 mt-3">
                 <div
-                  className={`h-2 rounded-full bg-gradient-to-r ${colors.bg} transition-all duration-1000 ease-out`}
+                  className={`h-2 rounded-full bg-gradient-to-r ${colors.bg} transition-all duration-1000 ease-out shadow-sm`}
                   style={{ width: `${value}%` }}
                 ></div>
               </div>
             )}
           </div>
           
-          <div className={`p-3 rounded-xl bg-gradient-to-r ${colors.bg} shadow-lg relative`}>
-            <Icon className="h-8 w-8 text-white" />
+          <div className={`p-4 rounded-2xl bg-gradient-to-r ${colors.bg} shadow-lg relative transform hover:scale-110 transition-transform duration-200`}>
+            <Icon className="h-8 w-8 text-white drop-shadow-sm" />
             {isRealTime && (
               <div className="absolute -top-1 -right-1 w-3 h-3 bg-success-400 rounded-full animate-ping"></div>
             )}
@@ -202,8 +207,8 @@ const StatsCard = ({
         {renderMiniTrend()}
       </div>
 
-      {/* Hover effect overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 hover:opacity-10 transition-opacity duration-300 transform -skew-x-12 -translate-x-full hover:translate-x-full"></div>
+      {/* Enhanced hover effect overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 hover:opacity-20 transition-opacity duration-300 transform -skew-x-12 -translate-x-full hover:translate-x-full"></div>
     </div>
   )
 }

@@ -469,7 +469,7 @@ const AdminDashboard = () => {
                     animated={true}
                   />
                   
-                  <div className="card">
+                  <div className="card-success">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center space-x-2">
                       <TrendingUp className="h-5 w-5 text-success-600" />
                       <span>Revenue Overview</span>
@@ -518,7 +518,7 @@ const AdminDashboard = () => {
                 </div>
 
                 {/* System Health Dashboard */}
-                <div className="card">
+                <div className="card-primary">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center space-x-2">
                     <Activity className="h-5 w-5 text-primary-600" />
                     <span>System Health</span>
@@ -567,7 +567,7 @@ const AdminDashboard = () => {
             </div>
 
             {/* Popular Events */}
-            <div className="card">
+            <div className="card-secondary">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-xl font-semibold text-gray-900">Popular Events</h2>
                 <button
@@ -630,7 +630,7 @@ const AdminDashboard = () => {
         {/* Events Tab */}
         {activeTab === 'events' && (
           <div className="space-y-6 animate-slide-up">
-            <div className="card">
+            <div className="card-elevated">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-xl font-semibold text-gray-900">All Events</h2>
                 <div className="flex items-center space-x-4">

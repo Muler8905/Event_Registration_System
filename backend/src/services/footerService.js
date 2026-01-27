@@ -252,6 +252,19 @@ class FooterService {
     });
   }
 
+  // Get contact information
+  getContactInfo() {
+    return {
+      email: 'mulukenugamo8@gmail.com',
+      phone: '+251 900632624',
+      address: 'Addis Ababa, Ethiopia',
+      businessHours: 'Mon-Fri 9AM-6PM EAT',
+      timezone: 'East Africa Time (EAT)',
+      supportEmail: 'mulukenugamo8@gmail.com',
+      emergencyContact: '+251 900632624'
+    };
+  }
+
   // Get newsletter subscription stats
   async getNewsletterStats() {
     return await this.getCachedData('newsletterStats', async () => {
@@ -315,6 +328,7 @@ class FooterService {
       contextualNavigation: contextualNav,
       announcements,
       newsletterStats,
+      contactInfo: this.getContactInfo(),
       systemHealth: context === 'admin' ? this.getSystemHealth() : null,
       timestamp: new Date()
     };
