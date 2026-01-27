@@ -1,12 +1,25 @@
 import axios from 'axios'
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+// API Configuration for different environments
+const getApiBaseUrl = () => {
+  // Check if we're in development mode
+  if (import.meta.env.DEV) {
+    return import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+  }
+  
+  // Production environment - you'll need to update this with your actual backend URL
+  // For now, using a placeholder that you can update when you deploy the backend
+  return import.meta.env.VITE_API_URL || 'https://your-backend-url.herokuapp.com/api'
+}
+
+const API_BASE_URL = getApiBaseUrl()
 
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json'
-  }
+  },
+  timeout: 10000 // 10 second timeout
 })
 
 // Request interceptor to add auth token

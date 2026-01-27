@@ -212,6 +212,71 @@ VITE_API_URL="http://localhost:5000"
 
 ## 🚀 Deployment
 
+### GitHub Pages (Frontend)
+The frontend is automatically deployed to GitHub Pages using GitHub Actions.
+
+**Live Demo**: [https://muler8905.github.io/Event_Registration_System/](https://muler8905.github.io/Event_Registration_System/)
+
+#### Automatic Deployment
+- Every push to `main` branch triggers automatic deployment
+- GitHub Actions workflow builds and deploys the frontend
+- No manual intervention required
+
+#### Manual Deployment
+```bash
+# Build the frontend
+cd frontend
+npm run build
+
+# Files are generated in frontend/dist/
+```
+
+### Backend Deployment Options
+
+#### Option 1: Heroku (Recommended)
+```bash
+# Create Heroku app
+heroku create your-app-name
+
+# Set environment variables
+heroku config:set NODE_ENV=production
+heroku config:set DATABASE_URL=your-database-url
+heroku config:set JWT_SECRET=your-jwt-secret
+heroku config:set FRONTEND_URL=https://muler8905.github.io/Event_Registration_System
+
+# Deploy backend
+git subtree push --prefix backend heroku main
+```
+
+#### Option 2: Railway/Render
+1. Connect your GitHub repository
+2. Select `backend` folder as root directory
+3. Set environment variables
+4. Deploy automatically
+
+### Production Environment Variables
+
+#### Frontend (.env.production)
+```env
+VITE_API_URL=https://your-backend-url.herokuapp.com/api
+VITE_APP_NAME=EventHub
+VITE_APP_VERSION=2.1.0
+VITE_ENVIRONMENT=production
+```
+
+#### Backend (.env)
+```env
+NODE_ENV=production
+PORT=5000
+DATABASE_URL=your-postgresql-database-url
+JWT_SECRET=your-super-secret-jwt-key
+FRONTEND_URL=https://muler8905.github.io/Event_Registration_System
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USER=mulukenugamo8@gmail.com
+EMAIL_PASS=your-app-password
+```
+
 ### Production Build
 ```bash
 # Frontend production build
@@ -230,6 +295,8 @@ npm run build
 - Set up SSL certificates for HTTPS
 - Configure reverse proxy (nginx) for load balancing
 - Set up monitoring and logging (PM2, Winston)
+
+**📋 Detailed Deployment Guide**: See [DEPLOYMENT.md](DEPLOYMENT.md) for comprehensive deployment instructions.
 
 ## 📈 Advanced Features
 
