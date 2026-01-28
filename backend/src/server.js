@@ -149,7 +149,7 @@ process.on('SIGINT', () => {
 // Initialize WebSocket service
 websocketService.initialize(server);
 
-server.listen(PORT, () => {
+server.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 EventHub API Server running on port ${PORT}`);
   console.log(`📊 Environment: ${process.env.NODE_ENV || 'development'}`);
   console.log(`🌐 API Documentation: http://localhost:${PORT}/api`);

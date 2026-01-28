@@ -1,6 +1,6 @@
 {
   "name": "event-registration-backend",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "Backend for Event Registration System",
   "main": "src/server.js",
   "engines": {
@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "nodemon src/server.js",
-    "start": "node start.js",
+    "start": "node src/server.js",
     "build": "prisma generate",
     "postinstall": "prisma generate",
     "db:generate": "prisma generate",
@@ -17,8 +17,7 @@
     "db:migrate": "prisma migrate deploy",
     "db:seed": "node src/utils/seedData.js",
     "db:reset": "prisma db push --force-reset && npm run db:seed",
-    "db:deploy": "prisma db push && npm run db:seed",
-    "deploy": "prisma db push && npm run db:seed && npm start"
+    "db:deploy": "prisma migrate deploy && npm run db:seed"
   },
   "dependencies": {
     "@prisma/client": "^5.6.0",
