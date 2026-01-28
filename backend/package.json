@@ -9,15 +9,16 @@
   },
   "scripts": {
     "dev": "nodemon src/server.js",
-    "start": "node src/server.js",
-    "build": "prisma generate && prisma db push && npm run db:seed",
+    "start": "node start.js",
+    "build": "prisma generate",
     "postinstall": "prisma generate",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:migrate": "prisma migrate deploy",
     "db:seed": "node src/utils/seedData.js",
     "db:reset": "prisma db push --force-reset && npm run db:seed",
-    "db:deploy": "prisma db push && npm run db:seed"
+    "db:deploy": "prisma db push && npm run db:seed",
+    "deploy": "prisma db push && npm run db:seed && npm start"
   },
   "dependencies": {
     "@prisma/client": "^5.6.0",
