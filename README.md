@@ -2,9 +2,9 @@
 
 A comprehensive, full-stack event registration system built with React, Node.js, and modern web technologies. Features real-time analytics, professional UI/UX, and enterprise-grade functionality.
 # About us  
- COURSE : IP. FINAL PROJECT.
-  GROUP 10 MEMBERS:
-##Student name……………………………………………………ID 
+# COURSE : IP. FINAL PROJECT.
+#  GROUP 10 MEMBERS:
+#  Student name……………………………………………………ID 
 ## 1.MULUKEN  UGAMO.............……….1501491
 ## 2.NEBIYU  TSEGAYE….............. 1501532
 ## 3.MAHLET  FEKDEWLD………….......... 1501381
